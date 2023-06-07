@@ -18,8 +18,9 @@ frequent_itemsets = apriori(binary_table, min_support=0.1, use_colnames=True)
 rules = association_rules(frequent_itemsets, metric="confidence", min_threshold=0.7)
 
 print(rules)
-# 将关联规则写入 CSV 文件
-rules.to_csv("../static/data/rules.csv", index=False)
+# 将关联规则写入 json 文件
+
+rules.to_json('../static/data/rules.json', orient='records', force_ascii=False)
 
 
 

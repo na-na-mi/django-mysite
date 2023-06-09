@@ -1,104 +1,104 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
-    {% load static %}
+ {% load static %}
     <script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
     <script src="{% static 'js/echarts.min.js' %}"></script>
 </head>
 <body>
 <div id="myecharts" style="position: absolute; width: 100%; height: 100%"></div>
 <script>
-    const datainfo = {
-        "xdata": [20160301, 20160302, 20160303, 20160304, 20160305, 20160306, 20160307, 20160308, 20160309, 20160310, 20160311, 20160312, 20160313, 20160314, 20160315, 20160316, 20160317, 20160318, 20160319, 20160320, 20160321, 20160322, 20160323, 20160324, 20160325, 20160328, 20160329, 20160330, 20160331],
-        "maledata": [976, 979, 995, 1003, 1008, 1018, 1024, 1037, 1041, 1054, 1058, 1068, 1082, 1085, 1096, 1110, 1120, 1126, 1132, 1139, 1151, 1164, 1171, 1182, 1190, 1224, 1238, 1249, 1261],
-        "femaledata": [1264, 1279, 1293, 1306, 1323, 1327, 1331, 1346, 1358, 1368, 1383, 1405, 1413, 1423, 1441, 1452, 1463, 1474, 1481, 1496, 1509, 1527, 1539, 1547, 1562, 1592, 1611, 1632, 1651]
+    var datainfo={
+        "xdata":[20160301,	20160302,	20160303,	20160304,	20160305,	20160306,	20160307,	20160308,	20160309,	20160310,	20160311,	20160312,	20160313,	20160314,	20160315,	20160316,	20160317,	20160318,	20160319,	20160320,	20160321,	20160322,	20160323,	20160324,	20160325,	20160328,	20160329,	20160330,	20160331],
+        "maledata":[976,	979,	995,	1003,	1008,	1018,	1024,	1037,	1041,	1054,	1058,	1068,	1082,	1085,	1096,	1110,	1120,	1126,	1132,	1139,	1151,	1164,	1171,	1182,	1190,	1224,	1238,	1249,	1261],
+        "femaledata":[1264,	1279,	1293,	1306,	1323,	1327,	1331,	1346,	1358,	1368,	1383,	1405,	1413,	1423,	1441,	1452,	1463,	1474,	1481,	1496,	1509,	1527,	1539,	1547,	1562,	1592,	1611,	1632,	1651]
     };
     $(function(){
-        drawGraphCharts();
+        drawGraphCharts(datainfo);
     })
-    function drawGraphCharts(){
-        const myecharts = echarts.init(document.getElementById('myecharts'));
-        const options = {
-            title: {
-                text: 'Les Miserables',
-                subtext: 'Default layout',
-                top: 'bottom',
-                left: 'right'
-            },
-            tooltip: {},
+    function drawGraphCharts(jsondata){
+    var myecharts=echarts.init(document.getElementById('myecharts'));
+    var options={
+        title: {
+            text: 'Les Miserables',
+            subtext: 'Default layout',
+            top: 'bottom',
+            left: 'right'
+        },
+        tooltip: {},
 //        legend: [{
 //            // selectedMode: 'single',
 //            data: categories.map(function (a) {
 //                return a.name;
 //            })
 //        }],
-            animation: true,
+        animation: true,
 
-            series: [
-                {
-                    name: 'Les Miserables',
-                    type: 'graph',
-                    layout: 'force',
-                    symbolSize: 80,
-                    data: [
-                        {name: '中国', value: 20},
-                        {name: '北京', value: 20},
-                        {name: '恭王府', value: 20},
-                        {name: '奥林匹克公园', value: 20},
-                        {name: '明十三陵', value: 20},
-                        {name: '颐和园', value: 20},
-                        {name: '安徽', value: 20},
-                        {name: '九华山', value: 20},
-                        {name: '天柱山', value: 20},
-                        {name: '黄山', value: 20},
-                        {name: '八里河', value: 20},
-                        {name: '山东', value: 20},
-                        {name: '台儿庄', value: 20},
-                        {name: '沂蒙山', value: 20},
-                        {name: '泰山', value: 20}
-                    ],
-                    links: [
-                        {source: '中国', target: '北京'},
-                        {source: '中国', target: '山东'},
-                        {source: '中国', target: '安徽'},
-                        {source: '北京', target: '恭王府'},
-                        {source: '北京', target: '明十三陵'},
-                        {source: '北京', target: '颐和园'},
-                        {source: '北京', target: '奥林匹克公园'},
-                        {source: '安徽', target: '黄山'},
-                        {source: '安徽', target: '八里河'},
-                        {source: '安徽', target: '九华山'},
-                        {source: '安徽', target: '天柱山'},
-                        {source: '山东', target: '台儿庄'},
-                        {source: '山东', target: '泰山'},
-                        {source: '山东', target: '沂蒙山'}
-                    ]
-                    ,
+        series : [
+            {
+                name: 'Les Miserables',
+                type: 'graph',
+                layout: 'force',
+                symbolSize:80,
+                data: [
+                    {name:'中国',value:20},
+                    {name:'北京',value:20},
+                    {name:'恭王府',value:20},
+                    {name:'奥林匹克公园',value:20},
+                    {name:'明十三陵',value:20},
+                    {name:'颐和园',value:20,},
+                    {name:'安徽',value:20},
+                    {name:'九华山',value:20},
+                    {name:'天柱山',value:20},
+                    {name:'黄山',value:20},
+                    {name:'八里河',value:20},
+                    {name:'山东',value:20},
+                    {name:'台儿庄',value:20},
+                    {name:'沂蒙山',value:20},
+                    {name:'泰山',value:20}
+                ],
+                links: [
+                    {source:'中国',target:'北京'},
+                    {source:'中国',target:'山东'},
+                    {source:'中国',target:'安徽'},
+                    {source:'北京',target:'恭王府'},
+                    {source:'北京',target:'明十三陵'},
+                    {source:'北京',target:'颐和园'},
+                    {source:'北京',target:'奥林匹克公园'},
+                    {source:'安徽',target:'黄山'},
+                    {source:'安徽',target:'八里河'},
+                    {source:'安徽',target:'九华山'},
+                    {source:'安徽',target:'天柱山'},
+                    {source:'山东',target:'台儿庄'},
+                    {source:'山东',target:'泰山'},
+                    {source:'山东',target:'沂蒙山'}
+                ]
+                ,
 //                categories: categories,
-                    roam: true,
-                    label: {
+                roam: true,
+                label: {
 
-                        normal: {
-                            show: true,
-                            position: 'inside'
-                        }
-                    },
-                    edgeSymbol: ['none', 'arrow'],
-                    lineStyle: {
-                        normal: {
-                            color: 'green',
-                            curveness: 0.3
-                        }
-                    },
-                    force: {
-                        repulsion: 1000
+                    normal: {
+                        show:true,
+                        position: 'inside'
                     }
+                },
+                edgeSymbol:['none','arrow'],
+                lineStyle:{
+                    normal:{
+                        color:'green',
+                        curveness:0.3
+                    }
+                },
+                force: {
+                    repulsion: 1000
                 }
-            ]
-        };
-        myecharts.setOption(options);
+            }
+        ]
+    };
+    myecharts.setOption(options);
     }
 </script>
 </body>

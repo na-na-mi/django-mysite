@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>关联规则关系图</title>
+    <script src="{% static 'js/echarts.min.js' %}"></script>  <!-- 引入 Echarts 的 JS 文件 -->
+</head>
+<body>
+    <div id="chart" style="width: 800px; height: 600px;"></div>
+
+    <script type="text/javascript">
+        const chart = echarts.init(document.getElementById('chart'));
+        chart.showLoading();
+
+        // 加载关系图数据
+        $.get('{{ graph_file }}', function (data) {
+            chart.hideLoading();
+            chart.setOption({
+                series: [{
+                    type: 'graph',
+                    layout: 'force',
+                    data: data.nodes,
+                    links: data.links,
+                    roam: true,
+                    label: {
+                        show: true,
+                        position: 'inside',
+                        formatter: '{b}'
+                    },
+                    force: {
+                        repulsion: 1000
+                    }
+                }]
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,14 +1,20 @@
-#
-# from django.http import HttpResponse
-#
-#
-# def index(request):
-#     return HttpResponse("Hello, world. You're at the polls index.")
+import sqlite3
 from django.shortcuts import render
+import pandas as pd
 
 
-def index(request):
-    return render(request, "index.html")
+class GetData:
+    def index(self):
+        # print(777)
+        # 连接到数据库
+        conn = sqlite3.connect('../db.sqlite3')
 
-# def product_recommendation(request):
+        # 执行SQL查询语句
+        query = "SELECT * FROM main.polls_salesdata;"
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        print(df)
+        # 将查询结果传递给模板
+        return render(self, 'index.html', {'results': df})
+
 

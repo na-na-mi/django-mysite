@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class Sale(models.Model):
+class SalesData(models.Model):
     line_ID = models.IntegerField()
     order_ID = models.CharField(max_length=100)
     order_Date = models.CharField(max_length=100)

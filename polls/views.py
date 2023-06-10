@@ -1,3 +1,4 @@
+
 import json
 
 from django.shortcuts import render
@@ -9,8 +10,20 @@ def test(request):
 
 # def product_recommendation(request):
 
-def index(request):
-    return render(request, "index.html")
+class GetData:
+    def index(self):
+        # print(777)
+        # 连接到数据库
+        conn = sqlite3.connect('../db.sqlite3')
+
+        # 执行SQL查询语句
+        query = "SELECT * FROM main.polls_salesdata;"
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+        print(df)
+        # 将查询结果传递给模板
+        return render(self, 'index.html', {'results': df})
+
 
 def visualize_rules(request):
     # 获取关联规则数据（假设数据存储在 rules 变量中）
@@ -41,6 +54,7 @@ def visualize_rules(request):
 
     # 渲染图表并将图表保存为 HTML 文件
     graph.render("graph.html")
+
 
     # 将图表文件名传递给模板进行渲染
     return render(request, "visualize.html", {"graph_file": "graph.html"})
